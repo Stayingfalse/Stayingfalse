@@ -112,16 +112,6 @@
           "repo": "Stayingfalse/rast3",
           "description": "The engine behind raosanta.uk: the current Random Acts of Santa platform (TypeScript / Next.js).",
           "featured": true
-        },
-        {
-          "name": "RASanta2025",
-          "repo": "Stayingfalse/RASanta2025",
-          "description": "TypeScript rebuild of RAS for 2025."
-        },
-        {
-          "name": "RASanta",
-          "repo": "Stayingfalse/RASanta",
-          "description": "Where it all started: the original Random Act of Santa project."
         }
       ]
     },
@@ -134,11 +124,6 @@
           "repo": "Stayingfalse/TechNews-Bot",
           "description": "techshorts: renders quiz, dungeon-crawl and racing videos entirely in code and posts them to Instagram Reels and YouTube Shorts, with no manual steps. Powers every channel on quiz.cezz.co.uk.",
           "featured": true
-        },
-        {
-          "name": "Onlydan.uk",
-          "repo": "Stayingfalse/Onlydan.uk",
-          "description": "The code running onlydan.uk, including race.onlydan.uk, the bets pages for Sixel Speedway."
         }
       ]
     },
@@ -229,6 +214,12 @@
           "name": "companydirectory",
           "repo": "Stayingfalse/companydirectory",
           "description": "Auto-generates static websites for local businesses that don't have one, with Google reviews and a sales dashboard."
+        },
+        {
+          "name": "Onlydan.uk",
+          "repo": "Stayingfalse/Onlydan.uk",
+          "description": "The code behind onlydan.uk, my parody website.",
+          "site": "https://onlydan.uk"
         }
       ]
     }

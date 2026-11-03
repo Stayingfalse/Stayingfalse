@@ -44,15 +44,12 @@ Live games and good company in chat, plus homemade stream tools like an AI co-pi
 | Repo | What it does |
 | --- | --- |
 | ⭐ [**rast3**](https://github.com/Stayingfalse/rast3) | The engine behind raosanta.uk: the current Random Acts of Santa platform (TypeScript / Next.js). |
-| [**RASanta2025**](https://github.com/Stayingfalse/RASanta2025) | TypeScript rebuild of RAS for 2025. |
-| [**RASanta**](https://github.com/Stayingfalse/RASanta) | Where it all started: the original Random Act of Santa project. |
 
 ### 🎬 Shorts & Instagram channels
 
 | Repo | What it does |
 | --- | --- |
 | ⭐ [**TechNews-Bot**](https://github.com/Stayingfalse/TechNews-Bot) | techshorts: renders quiz, dungeon-crawl and racing videos entirely in code and posts them to Instagram Reels and YouTube Shorts, with no manual steps. Powers every channel on quiz.cezz.co.uk. |
-| [**Onlydan.uk**](https://github.com/Stayingfalse/Onlydan.uk) | The code running onlydan.uk, including race.onlydan.uk, the bets pages for Sixel Speedway. |
 
 ### 📺 Twitch & streaming
 
@@ -85,6 +82,7 @@ Live games and good company in chat, plus homemade stream tools like an AI co-pi
 | Repo | What it does |
 | --- | --- |
 | [**companydirectory**](https://github.com/Stayingfalse/companydirectory) | Auto-generates static websites for local businesses that don't have one, with Google reviews and a sales dashboard. |
+| [**Onlydan.uk**](https://github.com/Stayingfalse/Onlydan.uk) | The code behind onlydan.uk, my parody website. 🌐 [onlydan.uk](https://onlydan.uk) |
 
 ---
 
