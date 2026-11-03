@@ -10,6 +10,13 @@
     "url": "",
     "accent": "#ff7a45"
   },
+  "twitch": {
+    "channel": "potato_cezzbb"
+  },
+  "shorts": {
+    "feedUrl": "https://quiz.cezz.co.uk/",
+    "perChannel": 3
+  },
   "highlights": [
     {
       "title": "Random Acts of Santa",
@@ -169,8 +176,9 @@
         {
           "name": "BotC-CSS",
           "repo": "Stayingfalse/BotC-CSS",
-          "description": "A simple Node.js app that stores common, customisable CSS for botc.app.",
-          "featured": true
+          "description": "Blood on the Clocktower CSS customiser: pick and tweak styles for botc.app, served by a simple Node.js app.",
+          "featured": true,
+          "site": "https://botcss.cezz.co.uk"
         },
         {
           "name": "clocktower-img2json",
@@ -191,8 +199,9 @@
         {
           "name": "BoardGameArena_Discord_Turn_Bot",
           "repo": "Stayingfalse/BoardGameArena_Discord_Turn_Bot",
-          "description": "A self-hosted Discord bot that spectates public BGA tables, with no login needed, and posts whose turn it is.",
-          "featured": true
+          "description": "BGA Turn Bot: share a Board Game Arena table link in Discord and it fills seats, pings whoever is up next and keeps score, with no BGA login needed.",
+          "featured": true,
+          "site": "https://bga.cezz.co.uk"
         },
         {
           "name": "PlanningBot",
@@ -207,7 +216,8 @@
         {
           "name": "CodwellTornement",
           "repo": "Stayingfalse/CodwellTornement",
-          "description": "Tournament tooling."
+          "description": "Codenames tournament dashboard: players are grouped into fours each round, every match runs in its own Discord thread, and results, standings and clue stats are logged automatically.",
+          "site": "https://ha.cezz.co.uk"
         }
       ]
     },

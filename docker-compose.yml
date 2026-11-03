@@ -9,3 +9,9 @@ services:
       # Optional: pull fresh content from the repo without rebuilding the image.
       CONTENT_URL: https://raw.githubusercontent.com/Stayingfalse/Stayingfalse/main/content/profile.json
       REFRESH_MINUTES: "10"
+      # Live-or-latest-VOD Twitch player. Free app at https://dev.twitch.tv/console/apps
+      # (any OAuth redirect URL, e.g. http://localhost). Without these the channel player is shown.
+      TWITCH_CLIENT_ID: ${TWITCH_CLIENT_ID:-}
+      TWITCH_CLIENT_SECRET: ${TWITCH_CLIENT_SECRET:-}
+      # Optional: the domain(s) the site is served on, comma-separated. Defaults to the request Host.
+      # TWITCH_PARENT: cezz.co.uk,www.cezz.co.uk

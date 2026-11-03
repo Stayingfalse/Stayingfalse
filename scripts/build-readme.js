@@ -66,7 +66,8 @@ function render(p) {
       out.push('| --- | --- |');
       for (const pr of g.projects) {
         const name = `${pr.featured ? '⭐ ' : ''}${link(`**${pr.name}**`, pr.url)}`;
-        out.push(`| ${name} | ${(pr.description || '').replace(/\|/g, '\\|')} |`);
+        const site = pr.site ? ` 🌐 ${link(pr.site.replace(/^https?:\/\//, '').replace(/\/$/, ''), pr.site)}` : '';
+        out.push(`| ${name} | ${(pr.description || '').replace(/\|/g, '\\|')}${site} |`);
       }
       out.push('');
     }

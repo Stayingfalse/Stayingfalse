@@ -67,7 +67,7 @@ Live games and good company in chat, plus homemade stream tools like an AI co-pi
 
 | Repo | What it does |
 | --- | --- |
-| ⭐ [**BotC-CSS**](https://github.com/Stayingfalse/BotC-CSS) | A simple Node.js app that stores common, customisable CSS for botc.app. |
+| ⭐ [**BotC-CSS**](https://github.com/Stayingfalse/BotC-CSS) | Blood on the Clocktower CSS customiser: pick and tweak styles for botc.app, served by a simple Node.js app. 🌐 [botcss.cezz.co.uk](https://botcss.cezz.co.uk) |
 | [**clocktower-img2json**](https://github.com/Stayingfalse/clocktower-img2json) | Reads script images and tries to build valid BotC JSON from them. |
 | [**BotCCSS**](https://github.com/Stayingfalse/BotCCSS) | CSS you can import straight into the BotC app via raw.githack.com. |
 
@@ -75,10 +75,10 @@ Live games and good company in chat, plus homemade stream tools like an AI co-pi
 
 | Repo | What it does |
 | --- | --- |
-| ⭐ [**BoardGameArena_Discord_Turn_Bot**](https://github.com/Stayingfalse/BoardGameArena_Discord_Turn_Bot) | A self-hosted Discord bot that spectates public BGA tables, with no login needed, and posts whose turn it is. |
+| ⭐ [**BoardGameArena_Discord_Turn_Bot**](https://github.com/Stayingfalse/BoardGameArena_Discord_Turn_Bot) | BGA Turn Bot: share a Board Game Arena table link in Discord and it fills seats, pings whoever is up next and keeps score, with no BGA login needed. 🌐 [bga.cezz.co.uk](https://bga.cezz.co.uk) |
 | [**PlanningBot**](https://github.com/Stayingfalse/PlanningBot) | A website and Discord bot for planning when to do a thing. |
 | [**WCSensee**](https://github.com/Stayingfalse/WCSensee) | A single-file World Cup bracket system. |
-| [**CodwellTornement**](https://github.com/Stayingfalse/CodwellTornement) | Tournament tooling. |
+| [**CodwellTornement**](https://github.com/Stayingfalse/CodwellTornement) | Codenames tournament dashboard: players are grouped into fours each round, every match runs in its own Discord thread, and results, standings and clue stats are logged automatically. 🌐 [ha.cezz.co.uk](https://ha.cezz.co.uk) |
 
 ### 🛠️ Other builds
 
