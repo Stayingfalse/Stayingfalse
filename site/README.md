@@ -53,7 +53,7 @@ The site is designed as a TV channel guide. The hero is a TV that tunes in from 
 | `quiz` | `socials[].theme` | The quiz videos' game-show set: sunburst, chasing marquee bulbs, letter tiles, a split-flap count, confetti |
 | `dungeon` | `socials[].theme` | Torchlight that follows the pointer, and a parchment quest log |
 | `speedway` | `socials[].theme` | Pit wall: start lights, then a timing tower |
-| `colony` | `socials[].theme` | A starfield and a radar sweep until the first episode lands |
+| `colony` | `socials[].theme` | The Farside pixel-art dusk: stepped, dithered sky, pixel stars, the channel art (`site/public/farside.png`), a HUD loading bar and pixel hills |
 
 A new Instagram account without a theme still gets a plain section. The browser code is in `site/public/app.js` and the styles in `site/public/styles.css`. All motion is turned off for people who prefer reduced motion.
 

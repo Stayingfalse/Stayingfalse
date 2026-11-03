@@ -262,23 +262,28 @@ function speedway(s, feed) {
 function colony(s, feed) {
   const vids = feed.videos || [];
   const latest = vids[0];
+  const stars = [[6, 8], [14, 22], [23, 5], [31, 30], [44, 12], [52, 3], [63, 26], [71, 9], [82, 18], [90, 6], [96, 28], [38, 40], [77, 38], [3, 36]];
   return `
   <section class="world w-colony" id="colony" data-world>
     ${tuner}
-    <div class="stars" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="planet" aria-hidden="true"></div>
+    <div class="px-stars" aria-hidden="true">${stars.map(([x, y], i) => `<i style="--x:${x}%;--y:${y}%;--i:${i}"></i>`).join('')}</div>
     <div class="wrap colony-grid">
-      <div>
-        <h2>${esc(s.name || 'Farside colony')}</h2>
-        <p class="colony-desc">${esc(s.description)}</p>
-        ${latest
-          ? `<p>Latest transmission: ${a(latest.instagram, esc(latest.title))}, ${esc(latest.date)}.</p>`
-          : '<p class="colony-wait">No transmissions yet. Follow the channel to catch the first one when it lands.</p>'}
-        <p>${follow(s)}</p>
+      <div class="hud">
+        <h2><span class="hud-title">${esc((s.name || 'Farside colony').split(' ')[0])}</span><span class="hud-sub">${esc((s.name || 'Farside colony').split(' ').slice(1).join(' ') || 'colony')}</span></h2>
+        <p class="hud-desc">${esc(s.description)}</p>
+        <div class="hud-bar">
+          <p>${latest ? `Latest: ${a(latest.instagram, esc(latest.title))}` : 'Next: first transmission'}</p>
+          <div class="bar${latest ? ' full' : ''}" role="img" aria-label="${latest ? 'Transmission received' : 'First transmission on its way'}"><i></i></div>
+        </div>
+        <p>${a(s.url, `Follow @${esc(s.handle)}`, 'px-btn')}</p>
       </div>
-      ${latest ? reelPhone(latest, s.handle) : `
-      <div class="radar" role="img" aria-label="Radar scanning for the first transmission"><span class="sweep"></span><span class="blip"></span></div>`}
+      <figure class="px-scene">
+        <img src="/farside.png" width="90" height="90" alt="Pixel art of the Farside colony: a lander module and a glass habitat dome on a purple moon, under a huge ringed planet at dusk, with a storage bunker underground.">
+      </figure>
     </div>
+    ${latest ? `<div class="wrap colony-reel">${reelPhone(latest, s.handle)}</div>` : ''}
+    <div class="px-hills" aria-hidden="true"></div>
+    <div class="px-ground" aria-hidden="true"></div>
   </section>`;
 }
 
@@ -341,7 +346,7 @@ function credits(p) {
 function renderPage(p, ctx = {}) {
   const H = (t) => p.highlights.find((h) => h.theme === t);
   const parents = ctx.parents && ctx.parents.length ? ctx.parents : [ctx.host || 'localhost'];
-  const fonts = 'https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Bungee&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap';
+  const fonts = 'https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Bungee&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@400;700&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap';
   return `<!doctype html>
 <html lang="en-GB" class="no-js">
 <head>
