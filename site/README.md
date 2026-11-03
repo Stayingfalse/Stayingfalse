@@ -41,5 +41,21 @@ Twitch only allows its player on HTTPS pages, so serve the site behind your usua
 To change how many reels each channel shows, set `shorts.perChannel` in `profile.json`.
 A project's `site` field adds a 🌐 link to its live site.
 
+### Design
+
+The site is designed as a TV channel guide. The hero is a TV that tunes in from static next to a "What's on" listings card, and each section below is a channel styled after the real thing:
+
+| Theme key | Where it's set | Look |
+| --- | --- | --- |
+| `santa` | `highlights[].theme` | Random Acts of Santa airmail post: navy, cream postcard, swinging baubles, a postmark that stamps down |
+| `twitch` | `highlights[].theme` | A TV with an on-air light that is lit only when you're live, and a potato on top |
+| `shorts` | `highlights[].theme` | Plain intro before the channels |
+| `quiz` | `socials[].theme` | The quiz videos' game-show set: sunburst, chasing marquee bulbs, letter tiles, a split-flap count, confetti |
+| `dungeon` | `socials[].theme` | Torchlight that follows the pointer, and a parchment quest log |
+| `speedway` | `socials[].theme` | Pit wall: start lights, then a timing tower |
+| `colony` | `socials[].theme` | A starfield and a radar sweep until the first episode lands |
+
+A new Instagram account without a theme still gets a plain section. The browser code is in `site/public/app.js` and the styles in `site/public/styles.css`. All motion is turned off for people who prefer reduced motion.
+
 Endpoints: `/` serves the site, `/profile.json` the content as JSON, and `/healthz` a health check.
 Put static assets such as images in `site/public/`.

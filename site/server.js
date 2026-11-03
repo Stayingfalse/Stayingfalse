@@ -11,6 +11,7 @@ const path = require('path');
 const { loadLocal, normalise } = require('../scripts/content');
 const { getTwitchStatus } = require('./twitch');
 const { getShorts } = require('./shorts');
+const { renderPage } = require('./render');
 
 const PORT = Number(process.env.PORT) || 3000;
 const CONTENT_URL = process.env.CONTENT_URL || '';
@@ -33,131 +34,7 @@ async function refreshRemote() {
   }
 }
 
-const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const safeUrl = (u) => (/^https?:\/\//i.test(u || '') ? esc(u) : '');
-const hexColour = (c) => (/^#[0-9a-f]{3,8}$/i.test(c || '') ? c : '#ff7a45');
-
-function a(url, inner, cls = '') {
-  const href = safeUrl(url);
-  const c = cls ? ` class="${cls}"` : '';
-  return href ? `<a${c} href="${href}" target="_blank" rel="noopener">${inner}</a>` : `<span${c}>${inner}</span>`;
-}
-
-function renderTwitch(p, extras) {
-  const login = p.twitch && p.twitch.channel;
-  if (!login) return '';
-  const st = extras.twitch || { mode: 'channel' };
-  const parents = (TWITCH_PARENT.length ? TWITCH_PARENT : [extras.host || 'localhost']).map((h) => `&parent=${encodeURIComponent(h)}`).join('');
-  const src = st.mode === 'vod'
-    ? `https://player.twitch.tv/?video=v${encodeURIComponent(st.videoId)}${parents}&autoplay=false`
-    : `https://player.twitch.tv/?channel=${encodeURIComponent(login)}${parents}&autoplay=${st.mode === 'live'}&muted=true`;
-  const channelUrl = `https://www.twitch.tv/${encodeURIComponent(login)}`;
-  const heading = st.mode === 'live'
-    ? `<span class="live-dot" aria-hidden="true"></span> Live now on Twitch`
-    : st.mode === 'vod' ? '📺 Latest stream' : '📺 Twitch';
-  const sub = st.mode === 'live'
-    ? `${esc(st.title)}${st.game ? ` · <b>${esc(st.game)}</b>` : ''}`
-    : st.mode === 'vod'
-      ? `Offline right now. Catch up on <b>${esc(st.title)}</b>${st.publishedAt ? ` from ${esc(new Date(st.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }))}` : ''}.`
-      : `Live games and good company on ${esc(login)}.`;
-  return `
-    <section id="twitch">
-      <h2 class="${st.mode === 'live' ? 'is-live' : ''}">${heading}</h2>
-      <p class="lede">${sub} ${a(channelUrl, 'Open on Twitch →', 'cta')}</p>
-      <div class="player"><iframe src="${src}" title="Twitch player for ${esc(login)}" allowfullscreen loading="lazy"></iframe></div>
-    </section>`;
-}
-
-function renderReelChannel(s, feed, perChannel) {
-  const videos = ((feed && feed.videos) || []).slice(0, perChannel);
-  const [latest, ...rest] = videos;
-  const embed = latest && latest.reelId
-    ? `<div class="reel-embed"><iframe src="https://www.instagram.com/reel/${encodeURIComponent(latest.reelId)}/embed/" title="${esc(latest.title || 'Latest reel')} on @${esc(s.handle)}" loading="lazy" scrolling="no" allowtransparency="true"></iframe></div>`
-    : '';
-  const item = (v) => `<li><span class="date">${esc(v.date)}</span> ${a(v.instagram || v.youtube, esc(v.title || 'Video'))}${v.theme ? ` <span class="theme">${esc(v.theme)}</span>` : ''}</li>`;
-  return `
-        <article class="card reel-card">
-          <h3>${a(s.url, '@' + esc(s.handle))}</h3>
-          ${s.description ? `<p>${esc(s.description)}</p>` : ''}
-          ${latest ? `<p class="latest-label">Latest: <b>${esc(latest.title)}</b> <span class="date">${esc(latest.date)}</span></p>${embed}` : '<p class="soon">No videos yet. The first one is on its way.</p>'}
-          ${rest.length ? `<ul class="more">${rest.map(item).join('')}</ul>` : ''}
-        </article>`;
-}
-
-function renderPage(p, extras = {}) {
-  const socials = p.socials.map((s) =>
-    a(s.url, `<span aria-hidden="true">${esc(s.emoji)}</span> ${esc(s.platform)}${s.handle ? ` <b>${esc(s.handle)}</b>` : ''}`, 'chip')
-  ).join('');
-
-  const highlights = p.highlights.map((h) => `
-      <article class="highlight">
-        <div class="emoji" aria-hidden="true">${esc(h.emoji)}</div>
-        <h3>${esc(h.title)}</h3>
-        <p>${esc(h.description)}</p>
-        ${h.url ? a(h.url, `${esc(h.label || h.url)} →`, 'cta') : ''}
-      </article>`).join('');
-
-  const twitchSection = renderTwitch(p, extras);
-
-  const insta = p.socials.filter((s) => s.platform === 'Instagram');
-  const perChannel = Number(p.shorts && p.shorts.perChannel) || 3;
-  const instaSection = insta.length ? `
-    <section id="instagram">
-      <h2>📸 On Instagram</h2>
-      ${p.shorts && p.shorts.feedUrl ? `<p class="lede">Every video, and the YouTube versions, are listed at ${a(p.shorts.feedUrl, esc(p.shorts.feedUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')))}.</p>` : ''}
-      <div class="reels">${insta.map((s) => renderReelChannel(s, (extras.shorts || {})[String(s.handle).toLowerCase()], perChannel)).join('')}
-      </div>
-    </section>` : '';
-
-  const groups = p.projectGroups.map((g) => `
-      <div class="group">
-        <h3>${esc(g.emoji)} ${esc(g.title)}</h3>
-        <div class="grid">${g.projects.map((pr) => `
-          <article class="card${pr.featured ? ' featured' : ''}">
-            <h4>${a(pr.url, esc(pr.name))}${pr.featured ? ' <span class="star" title="Featured">★</span>' : ''}</h4>
-            <p>${esc(pr.description)}</p>
-            ${pr.site ? `<p class="site-link">${a(pr.site, `🌐 ${esc(pr.site.replace(/^https?:\/\//, '').replace(/\/$/, ''))}`)}</p>` : ''}
-          </article>`).join('')}
-        </div>
-      </div>`).join('');
-
-  return `<!doctype html>
-<html lang="en-GB">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(p.name)} · ${esc(p.handle)}</title>
-<meta name="description" content="${esc(p.tagline)}">
-<meta property="og:title" content="${esc(p.name)}">
-<meta property="og:description" content="${esc(p.tagline)}">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥔</text></svg>">
-<link rel="stylesheet" href="/styles.css">
-<style>:root{--accent:${hexColour(p.site.accent)}}</style>
-</head>
-<body>
-<header class="hero">
-  <div class="wrap">
-    <p class="kicker">@${esc(p.handle)}</p>
-    <h1>Hi, I'm ${esc(p.name)} 👋</h1>
-    <p class="tagline">${esc(p.tagline)}</p>
-    <nav class="chips">${socials}</nav>
-  </div>
-</header>
-<main class="wrap">
-  <section class="about">${p.about.map((t) => `<p>${esc(t)}</p>`).join('')}</section>
-  ${highlights ? `<section id="highlights"><h2>✨ What I do</h2><div class="highlights">${highlights}</div></section>` : ''}
-  ${twitchSection}
-  ${instaSection}
-  ${groups ? `<section id="projects"><h2>🧰 Core repos</h2>${groups}</section>` : ''}
-</main>
-<footer class="wrap">
-  <p>Built from <code>content/profile.json</code> in ${a(`https://github.com/${p.handle}/${p.handle}`, `${esc(p.handle)}/${esc(p.handle)}`)}. No database, just a repo.</p>
-</footer>
-</body>
-</html>`;
-}
-
-const MIME = { '.css': 'text/css; charset=utf-8', '.js': 'text/javascript', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.webp': 'image/webp' };
+const MIME = { '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.webp': 'image/webp' };
 
 function requestHost(req) {
   const h = String(req.headers['x-forwarded-host'] || req.headers.host || 'localhost').split(',')[0].trim().replace(/:\d+$/, '').toLowerCase();
@@ -174,7 +51,7 @@ const server = http.createServer(async (req, res) => {
       getShorts(profile.shorts && profile.shorts.feedUrl),
     ]);
     res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=60' });
-    return res.end(req.method === 'HEAD' ? undefined : renderPage(profile, { twitch, shorts, host: requestHost(req) }));
+    return res.end(req.method === 'HEAD' ? undefined : renderPage(profile, { twitch, shorts, host: requestHost(req), parents: TWITCH_PARENT }));
   }
   if (url.pathname === '/profile.json') {
     res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'access-control-allow-origin': '*' });

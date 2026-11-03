@@ -11,7 +11,8 @@
     "accent": "#ff7a45"
   },
   "twitch": {
-    "channel": "potato_cezzbb"
+    "channel": "potato_cezzbb",
+    "display": "Potato_CezzBB"
   },
   "shorts": {
     "feedUrl": "https://quiz.cezz.co.uk/",
@@ -23,21 +24,28 @@
       "emoji": "🎅",
       "url": "https://raosanta.uk",
       "label": "raosanta.uk",
-      "description": "Anonymous Christmas gifting for workplaces, Discord servers and friend groups. Share an Amazon wishlist, pick up someone else's, and spread some festive chaos. No draw, no fixed match, and no home addresses shared. Runs every year from 15 November to 6 January."
+      "description": "Anonymous Christmas gifting for workplaces, Discord servers and friend groups. Share an Amazon wishlist, pick up someone else's, and spread some festive chaos. No draw, no fixed match, and no home addresses shared. Runs every year from 15 November to 6 January.",
+      "theme": "santa",
+      "season": {
+        "opens": "11-15",
+        "closes": "01-06"
+      }
     },
     {
       "title": "Interactive Shorts channels",
       "emoji": "🎬",
       "url": "https://quiz.cezz.co.uk/",
       "label": "quiz.cezz.co.uk",
-      "description": "A family of Instagram Reels and YouTube Shorts channels where the comments run the show: daily quizzes, a vote-driven dungeon crawl, play-money race betting and a colony sim on the way. Every video is rendered in code and posted automatically by my techshorts bot."
+      "description": "A family of Instagram Reels and YouTube Shorts channels where the comments run the show: daily quizzes, a vote-driven dungeon crawl, play-money race betting and a colony sim on the way. Every video is rendered in code and posted automatically by my techshorts bot.",
+      "theme": "shorts"
     },
     {
       "title": "Potato_Cezzbb on Twitch",
       "emoji": "🥔",
       "url": "https://www.twitch.tv/potato_cezzbb",
       "label": "twitch.tv/Potato_Cezzbb",
-      "description": "Live games and good company in chat, plus homemade stream tools like an AI co-pilot chatbot and custom overlays. Come and say hi."
+      "description": "Live games and good company in chat, plus homemade stream tools like an AI co-pilot chatbot and custom overlays. Come and say hi.",
+      "theme": "twitch"
     }
   ],
   "socials": [
@@ -61,7 +69,9 @@
       "handle": "mediaquiz.daily",
       "url": "https://www.instagram.com/mediaquiz.daily/",
       "description": "Daily quizzes on films, cartoons, food, video games and more. Answer in the comments, earn shout-outs and pick the next theme.",
-      "enabled": true
+      "enabled": true,
+      "theme": "quiz",
+      "name": "Daily quiz"
     },
     {
       "platform": "Instagram",
@@ -69,15 +79,19 @@
       "handle": "dungeoncrawlergram",
       "url": "https://www.instagram.com/dungeoncrawlergram/",
       "description": "A serialised choose-your-adventure. Comment votes decide what happens next, and commenters can join the story.",
-      "enabled": true
+      "enabled": true,
+      "theme": "dungeon",
+      "name": "Dungeon crawl"
     },
     {
       "platform": "Instagram",
       "emoji": "📸",
       "handle": "sixelspeedway",
       "url": "https://www.instagram.com/sixelspeedway/",
-      "description": "Sixel Speedway: car races where viewers bet play money in the comments, with balances and a league table.",
-      "enabled": true
+      "description": "Car races where viewers bet play money in the comments, with balances and a league table.",
+      "enabled": true,
+      "theme": "speedway",
+      "name": "Sixel Speedway"
     },
     {
       "platform": "Instagram",
@@ -85,7 +99,9 @@
       "handle": "farside.colony",
       "url": "https://www.instagram.com/farside.colony/",
       "description": "A new colony series, with the first episode on its way.",
-      "enabled": true
+      "enabled": true,
+      "theme": "colony",
+      "name": "Farside colony"
     },
     {
       "platform": "GitHub",

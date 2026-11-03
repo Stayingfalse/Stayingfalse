@@ -34,7 +34,7 @@ Live games and good company in chat, plus homemade stream tools like an AI co-pi
 
 - [@mediaquiz.daily](https://www.instagram.com/mediaquiz.daily/): Daily quizzes on films, cartoons, food, video games and more. Answer in the comments, earn shout-outs and pick the next theme.
 - [@dungeoncrawlergram](https://www.instagram.com/dungeoncrawlergram/): A serialised choose-your-adventure. Comment votes decide what happens next, and commenters can join the story.
-- [@sixelspeedway](https://www.instagram.com/sixelspeedway/): Sixel Speedway: car races where viewers bet play money in the comments, with balances and a league table.
+- [@sixelspeedway](https://www.instagram.com/sixelspeedway/): Car races where viewers bet play money in the comments, with balances and a league table.
 - [@farside.colony](https://www.instagram.com/farside.colony/): A new colony series, with the first episode on its way.
 
 ## 🧰 Core repos
