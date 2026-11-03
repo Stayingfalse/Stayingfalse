@@ -1,0 +1,85 @@
+{
+  "name": "Cezz",
+  "handle": "Stayingfalse",
+  "tagline": "Streamer, tinkerer, Secret-Santa wrangler and builder of slightly-too-many bots.",
+  "about": [
+    "I make things for the communities I'm part of: Twitch tools, Discord bots, Blood on the Clocktower helpers and Random Acts of Santa, which runs every Christmas.",
+    "Most of it starts as \"wouldn't it be fun if...\" and ends up as a repo below."
+  ],
+  "site": {
+    "url": "",
+    "accent": "#ff7a45"
+  },
+  "highlights": [
+    {
+      "title": "Random Acts of Santa",
+      "emoji": "🎅",
+      "url": "https://raosanta.uk",
+      "label": "raosanta.uk",
+      "description": "Anonymous Christmas gifting for workplaces, Discord servers and friend groups. Share an Amazon wishlist, pick up someone else's, and spread some festive chaos. No draw, no fixed match, and no home addresses shared. Runs every year from 15 November to 6 January."
+    },
+    {
+      "title": "Potato_Cezzbb on Twitch",
+      "emoji": "🥔",
+      "url": "https://www.twitch.tv/potato_cezzbb",
+      "label": "twitch.tv/Potato_Cezzbb",
+      "description": "Live games and good company in chat, plus homemade stream tools like an AI co-pilot chatbot and custom overlays. Come and say hi."
+    }
+  ],
+  "socials": [
+    { "platform": "Twitch", "emoji": "🎮", "handle": "Potato_Cezzbb", "url": "https://www.twitch.tv/potato_cezzbb", "enabled": true },
+    { "platform": "Instagram", "emoji": "📸", "handle": "REPLACE_ME", "url": "https://www.instagram.com/REPLACE_ME", "description": "Instagram channel #1: say what it's about", "enabled": false },
+    { "platform": "Instagram", "emoji": "📸", "handle": "REPLACE_ME_TOO", "url": "https://www.instagram.com/REPLACE_ME_TOO", "description": "Instagram channel #2: say what it's about", "enabled": false },
+    { "platform": "GitHub", "emoji": "💻", "handle": "Stayingfalse", "url": "https://github.com/Stayingfalse", "enabled": true },
+    { "platform": "Discord", "emoji": "💬", "handle": "If you know, you know", "url": "", "enabled": true }
+  ],
+  "projectGroups": [
+    {
+      "title": "Random Acts of Santa",
+      "emoji": "🎁",
+      "projects": [
+        { "name": "rast3", "repo": "Stayingfalse/rast3", "description": "The current generation of the Random Acts of Santa platform (TypeScript).", "featured": true },
+        { "name": "RASanta2025", "repo": "Stayingfalse/RASanta2025", "description": "TypeScript rebuild of RAS for 2025." },
+        { "name": "RASanta", "repo": "Stayingfalse/RASanta", "description": "Where it all started: the original Random Act of Santa project." }
+      ]
+    },
+    {
+      "title": "Twitch & streaming",
+      "emoji": "📺",
+      "projects": [
+        { "name": "Twitch-CoPilot", "repo": "Stayingfalse/Twitch-CoPilot", "description": "A Twitch bot that knows the game, the title and what the streamer is saying, and uses all of it to chat about the plays and reply to chatters.", "featured": true },
+        { "name": "StreamOverlay", "repo": "Stayingfalse/StreamOverlay", "description": "Custom overlays for the stream." },
+        { "name": "potato-game-bot", "repo": "Stayingfalse/potato-game-bot", "description": "Games and shenanigans for the Potato community." },
+        { "name": "Twitch-Channel-Points-Miner-nodejs", "repo": "Stayingfalse/Twitch-Channel-Points-Miner-nodejs", "description": "Watches a stream for you and earns the channel points." }
+      ]
+    },
+    {
+      "title": "Blood on the Clocktower",
+      "emoji": "🕰️",
+      "projects": [
+        { "name": "BotC-CSS", "repo": "Stayingfalse/BotC-CSS", "description": "A simple Node.js app that stores common, customisable CSS for botc.app.", "featured": true },
+        { "name": "clocktower-img2json", "repo": "Stayingfalse/clocktower-img2json", "description": "Reads script images and tries to build valid BotC JSON from them." },
+        { "name": "BotCCSS", "repo": "Stayingfalse/BotCCSS", "description": "CSS you can import straight into the BotC app via raw.githack.com." }
+      ]
+    },
+    {
+      "title": "Discord bots & community tools",
+      "emoji": "🤖",
+      "projects": [
+        { "name": "BoardGameArena_Discord_Turn_Bot", "repo": "Stayingfalse/BoardGameArena_Discord_Turn_Bot", "description": "A self-hosted Discord bot that spectates public BGA tables, with no login needed, and posts whose turn it is.", "featured": true },
+        { "name": "PlanningBot", "repo": "Stayingfalse/PlanningBot", "description": "A website and Discord bot for planning when to do a thing." },
+        { "name": "WCSensee", "repo": "Stayingfalse/WCSensee", "description": "A single-file World Cup bracket system." },
+        { "name": "CodwellTornement", "repo": "Stayingfalse/CodwellTornement", "description": "Tournament tooling." }
+      ]
+    },
+    {
+      "title": "Other builds",
+      "emoji": "🛠️",
+      "projects": [
+        { "name": "companydirectory", "repo": "Stayingfalse/companydirectory", "description": "Auto-generates static websites for local businesses that don't have one, with Google reviews and a sales dashboard." },
+        { "name": "TechNews-Bot", "repo": "Stayingfalse/TechNews-Bot", "description": "Generates draft social media videos about recent tech news." },
+        { "name": "Onlydan.uk", "repo": "Stayingfalse/Onlydan.uk", "description": "The code running onlydan.uk." }
+      ]
+    }
+  ]
+}

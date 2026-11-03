@@ -1,0 +1,13 @@
+{
+  "name": "stayingfalse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub profile README and personal website, both generated from content/profile.json",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node site/server.js",
+    "readme": "node scripts/build-readme.js",
+    "check": "node scripts/build-readme.js --check && node -e \"require('./site/server.js')\""
+  }
+}
