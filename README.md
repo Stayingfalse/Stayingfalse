@@ -2,11 +2,11 @@
 
 # Hi, I'm Cezz 👋
 
-> Streamer, tinkerer, Secret-Santa wrangler and builder of slightly-too-many bots.
+> Streamer, tinkerer, Secret-Santa wrangler, short-video channel runner and builder of slightly-too-many bots.
 
-🎮 [Twitch · **Potato_Cezzbb**](https://www.twitch.tv/potato_cezzbb) &nbsp;|&nbsp; 💻 [GitHub · **Stayingfalse**](https://github.com/Stayingfalse) &nbsp;|&nbsp; 💬 Discord · **If you know, you know**
+🎮 [Twitch · **Potato_Cezzbb**](https://www.twitch.tv/potato_cezzbb) &nbsp;|&nbsp; 🎬 [Shorts hub · **quiz.cezz.co.uk**](https://quiz.cezz.co.uk/) &nbsp;|&nbsp; 📸 [Instagram · **mediaquiz.daily**](https://www.instagram.com/mediaquiz.daily/) &nbsp;|&nbsp; 📸 [Instagram · **dungeoncrawlergram**](https://www.instagram.com/dungeoncrawlergram/) &nbsp;|&nbsp; 📸 [Instagram · **sixelspeedway**](https://www.instagram.com/sixelspeedway/) &nbsp;|&nbsp; 📸 [Instagram · **farside.colony**](https://www.instagram.com/farside.colony/) &nbsp;|&nbsp; 💻 [GitHub · **Stayingfalse**](https://github.com/Stayingfalse) &nbsp;|&nbsp; 💬 Discord · **If you know, you know**
 
-I make things for the communities I'm part of: Twitch tools, Discord bots, Blood on the Clocktower helpers and Random Acts of Santa, which runs every Christmas.
+I make things for the communities I'm part of: Random Acts of Santa every Christmas, a family of interactive Instagram and YouTube Shorts channels, Twitch tools, Discord bots and Blood on the Clocktower helpers.
 
 Most of it starts as "wouldn't it be fun if..." and ends up as a repo below.
 
@@ -18,11 +18,24 @@ Anonymous Christmas gifting for workplaces, Discord servers and friend groups. S
 
 👉 [raosanta.uk](https://raosanta.uk)
 
+### 🎬 [Interactive Shorts channels](https://quiz.cezz.co.uk/)
+
+A family of Instagram Reels and YouTube Shorts channels where the comments run the show: daily quizzes, a vote-driven dungeon crawl, play-money race betting and a colony sim on the way. Every video is rendered in code and posted automatically by my techshorts bot.
+
+👉 [quiz.cezz.co.uk](https://quiz.cezz.co.uk/)
+
 ### 🥔 [Potato_Cezzbb on Twitch](https://www.twitch.tv/potato_cezzbb)
 
 Live games and good company in chat, plus homemade stream tools like an AI co-pilot chatbot and custom overlays. Come and say hi.
 
 👉 [twitch.tv/Potato_Cezzbb](https://www.twitch.tv/potato_cezzbb)
+
+## 📸 On Instagram
+
+- [@mediaquiz.daily](https://www.instagram.com/mediaquiz.daily/): Daily quizzes on films, cartoons, food, video games and more. Answer in the comments, earn shout-outs and pick the next theme.
+- [@dungeoncrawlergram](https://www.instagram.com/dungeoncrawlergram/): A serialised choose-your-adventure. Comment votes decide what happens next, and commenters can join the story.
+- [@sixelspeedway](https://www.instagram.com/sixelspeedway/): Sixel Speedway: car races where viewers bet play money in the comments, with balances and a league table.
+- [@farside.colony](https://www.instagram.com/farside.colony/): A new colony series, with the first episode on its way.
 
 ## 🧰 Core repos
 
@@ -30,9 +43,16 @@ Live games and good company in chat, plus homemade stream tools like an AI co-pi
 
 | Repo | What it does |
 | --- | --- |
-| ⭐ [**rast3**](https://github.com/Stayingfalse/rast3) | The current generation of the Random Acts of Santa platform (TypeScript). |
+| ⭐ [**rast3**](https://github.com/Stayingfalse/rast3) | The engine behind raosanta.uk: the current Random Acts of Santa platform (TypeScript / Next.js). |
 | [**RASanta2025**](https://github.com/Stayingfalse/RASanta2025) | TypeScript rebuild of RAS for 2025. |
 | [**RASanta**](https://github.com/Stayingfalse/RASanta) | Where it all started: the original Random Act of Santa project. |
+
+### 🎬 Shorts & Instagram channels
+
+| Repo | What it does |
+| --- | --- |
+| ⭐ [**TechNews-Bot**](https://github.com/Stayingfalse/TechNews-Bot) | techshorts: renders quiz, dungeon-crawl and racing videos entirely in code and posts them to Instagram Reels and YouTube Shorts, with no manual steps. Powers every channel on quiz.cezz.co.uk. |
+| [**Onlydan.uk**](https://github.com/Stayingfalse/Onlydan.uk) | The code running onlydan.uk, including race.onlydan.uk, the bets pages for Sixel Speedway. |
 
 ### 📺 Twitch & streaming
 
@@ -65,8 +85,6 @@ Live games and good company in chat, plus homemade stream tools like an AI co-pi
 | Repo | What it does |
 | --- | --- |
 | [**companydirectory**](https://github.com/Stayingfalse/companydirectory) | Auto-generates static websites for local businesses that don't have one, with Google reviews and a sales dashboard. |
-| [**TechNews-Bot**](https://github.com/Stayingfalse/TechNews-Bot) | Generates draft social media videos about recent tech news. |
-| [**Onlydan.uk**](https://github.com/Stayingfalse/Onlydan.uk) | The code running onlydan.uk. |
 
 ---
 
