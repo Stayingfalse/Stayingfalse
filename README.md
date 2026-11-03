@@ -67,7 +67,7 @@ Live games and good company in chat, plus homemade stream tools like an AI co-pi
 
 | Repo | What it does |
 | --- | --- |
-| ⭐ [**BotC-CSS**](https://github.com/Stayingfalse/BotC-CSS) | Blood on the Clocktower CSS customiser: pick and tweak styles for botc.app, served by a simple Node.js app. 🌐 [botcss.cezz.co.uk](https://botcss.cezz.co.uk) |
+| ⭐ [**BotC-CSS**](https://github.com/Stayingfalse/BotC-CSS) | Blood on the Clocktower CSS customiser: pick and tweak styles for botc.app, served by a simple Node.js app. 🌐 [botccss.cezz.co.uk](https://botccss.cezz.co.uk) |
 | [**clocktower-img2json**](https://github.com/Stayingfalse/clocktower-img2json) | Reads script images and tries to build valid BotC JSON from them. |
 | [**BotCCSS**](https://github.com/Stayingfalse/BotCCSS) | CSS you can import straight into the BotC app via raw.githack.com. |
 

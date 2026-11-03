@@ -178,7 +178,7 @@
           "repo": "Stayingfalse/BotC-CSS",
           "description": "Blood on the Clocktower CSS customiser: pick and tweak styles for botc.app, served by a simple Node.js app.",
           "featured": true,
-          "site": "https://botcss.cezz.co.uk"
+          "site": "https://botccss.cezz.co.uk"
         },
         {
           "name": "clocktower-img2json",
