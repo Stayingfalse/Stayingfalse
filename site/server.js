@@ -7,6 +7,7 @@
 //     container picks up changes every REFRESH_MINUTES without a rebuild.
 const http = require('http');
 const fs = require('fs');
+const crypto = require('crypto');
 const path = require('path');
 const { loadLocal, normalise } = require('../scripts/content');
 const { getTwitchStatus } = require('./twitch');
@@ -17,6 +18,12 @@ const PORT = Number(process.env.PORT) || 3000;
 const CONTENT_URL = process.env.CONTENT_URL || '';
 const REFRESH_MINUTES = Number(process.env.REFRESH_MINUTES) || 10;
 const PUBLIC_DIR = path.join(__dirname, 'public');
+
+// Content hashes for the page's own assets. The page links them as /file?v=<hash>, so each deploy that
+// changes a file changes its URL, and no browser or CDN can pair a new page with an old stylesheet.
+const ASSET_VERSIONS = Object.fromEntries(fs.readdirSync(PUBLIC_DIR)
+  .filter((f) => fs.statSync(path.join(PUBLIC_DIR, f)).isFile())
+  .map((f) => [f, crypto.createHash('sha1').update(fs.readFileSync(path.join(PUBLIC_DIR, f))).digest('hex').slice(0, 10)]));
 const TWITCH_PARENT = (process.env.TWITCH_PARENT || '').split(',').map((h) => h.trim()).filter(Boolean);
 
 let profile = loadLocal();
@@ -51,7 +58,7 @@ const server = http.createServer(async (req, res) => {
       getShorts(profile.shorts && profile.shorts.feedUrl),
     ]);
     res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=60' });
-    return res.end(req.method === 'HEAD' ? undefined : renderPage(profile, { twitch, shorts, host: requestHost(req), parents: TWITCH_PARENT }));
+    return res.end(req.method === 'HEAD' ? undefined : renderPage(profile, { twitch, shorts, host: requestHost(req), parents: TWITCH_PARENT, assets: ASSET_VERSIONS }));
   }
   if (url.pathname === '/profile.json') {
     res.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'access-control-allow-origin': '*' });
@@ -64,7 +71,9 @@ const server = http.createServer(async (req, res) => {
 
   const file = path.normalize(path.join(PUBLIC_DIR, url.pathname));
   if (file.startsWith(PUBLIC_DIR + path.sep) && fs.existsSync(file) && fs.statSync(file).isFile()) {
-    res.writeHead(200, { 'content-type': MIME[path.extname(file)] || 'application/octet-stream', 'cache-control': 'public, max-age=3600' });
+    // versioned URLs never change content, so they can be cached for good; unversioned ones only briefly
+    const cache = url.searchParams.has('v') ? 'public, max-age=31536000, immutable' : 'public, max-age=300';
+    res.writeHead(200, { 'content-type': MIME[path.extname(file)] || 'application/octet-stream', 'cache-control': cache });
     return req.method === 'HEAD' ? res.end() : fs.createReadStream(file).pipe(res);
   }
   res.writeHead(404, { 'content-type': 'text/plain' });

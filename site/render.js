@@ -19,14 +19,18 @@ const tuner = '<div class="tuner" aria-hidden="true"><i></i></div>';
 
 // ---------- shared bits ----------
 
+// Versioned URL for a file in site/public (see ASSET_VERSIONS in server.js).
+let assetVersions = {};
+const asset = (file) => `/${file}${assetVersions[file] ? `?v=${assetVersions[file]}` : ''}`;
+
 const icon = {
-  follow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
-  open: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
-  code: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>',
-  watch: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
-  share: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M12 3v12M7 8l5-5 5 5"/></svg>',
-  next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
-  top: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>',
+  follow: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  open: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+  code: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>',
+  watch: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+  share: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M12 3v12M7 8l5-5 5 5"/></svg>',
+  next: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
+  top: '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>',
 };
 
 // TikTok-style action rail. Each action: { kind, label, url?, popover? }.
@@ -315,7 +319,7 @@ function colony(s, feed) {
         ${latest && latest.reelId ? `<p class="px-watch"><button type="button" class="px-btn" popovertarget="pop-colony">Watch the latest</button></p>` : ''}
       </div>
       <figure class="px-scene">
-        <img src="/farside.png" width="90" height="90" alt="Pixel art of the Farside colony: a lander module and a glass habitat dome on a purple moon, under a huge ringed planet at dusk, with a storage bunker underground.">
+        <img src="${asset('farside.png')}" width="90" height="90" alt="Pixel art of the Farside colony: a lander module and a glass habitat dome on a purple moon, under a huge ringed planet at dusk, with a storage bunker underground.">
       </figure>
     </div>
     ${latest ? reelPhone(latest, s.handle, 'pop-colony') : ''}
@@ -389,6 +393,7 @@ function credits(p) {
 // ---------- page ----------
 
 function renderPage(p, ctx = {}) {
+  assetVersions = ctx.assets || {};
   const H = (t) => p.highlights.find((h) => h.theme === t);
   const parents = ctx.parents && ctx.parents.length ? ctx.parents : [ctx.host || 'localhost'];
   const fonts = 'https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Bungee&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@400;700&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap';
@@ -406,8 +411,8 @@ function renderPage(p, ctx = {}) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${fonts}">
-<link rel="stylesheet" href="/styles.css">
-<script src="/app.js" defer></script>
+<link rel="stylesheet" href="${asset('styles.css')}">
+<script src="${asset('app.js')}" defer></script>
 </head>
 <body>
 <a class="skip" href="#santa">Skip to channels</a>
