@@ -3,6 +3,7 @@
 (() => {
   const root = document.documentElement;
   root.classList.remove('no-js');
+  root.classList.add('js');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // --- TV static, then tune in ---
@@ -27,15 +28,72 @@
     raf = requestAnimationFrame(draw);
   }
 
-  // --- channels switch on as they scroll in ---
-  const worlds = document.querySelectorAll('[data-world]');
-  if ('IntersectionObserver' in window && !reduce) {
+  // --- reels: each channel switches on when it fills the screen, and off again when it leaves,
+  //     so its entrance plays every time you swipe back to it ---
+  const reels = [...document.querySelectorAll('[data-reel]')];
+  const navList = document.querySelector('[data-reel-nav]');
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const navLinks = reels.map((r) => {
+    if (!navList) return null;
+    const li = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = `#${r.id}`;
+    link.innerHTML = '<span></span>';
+    link.querySelector('span').textContent = r.dataset.reel;
+    li.append(link);
+    navList.append(li);
+    return link;
+  });
+  const setActive = (reel) => {
+    reels.forEach((r, i) => navLinks[i] && navLinks[i].setAttribute('aria-current', r === reel ? 'true' : 'false'));
+    if (themeMeta && reel.dataset.tint) themeMeta.content = reel.dataset.tint;
+  };
+  if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-on'); io.unobserve(e.target); }
-    }, { threshold: 0.22 });
-    worlds.forEach((w) => io.observe(w));
+      for (const e of entries) {
+        if (e.isIntersecting && e.intersectionRatio >= 0.55) { e.target.classList.add('is-on'); setActive(e.target); }
+        else if (!e.isIntersecting && !reduce) e.target.classList.remove('is-on');
+      }
+    }, { threshold: [0, 0.55] });
+    reels.forEach((r) => io.observe(r));
   } else {
-    worlds.forEach((w) => w.classList.add('is-on'));
+    reels.forEach((r) => r.classList.add('is-on'));
+  }
+
+  const go = (reel) => reel && reel.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  document.addEventListener('click', (e) => {
+    const nextBtn = e.target.closest('[data-next]');
+    if (nextBtn) {
+      const i = reels.indexOf(nextBtn.closest('[data-reel]'));
+      go(reels[i + 1]);
+      return;
+    }
+    const shareBtn = e.target.closest('[data-share]');
+    if (shareBtn) share(shareBtn);
+  });
+
+  // --- share a channel: the native share sheet where there is one, otherwise copy the link ---
+  const toast = document.querySelector('[data-toast]');
+  let toastTimer;
+  const say = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  };
+  async function share(btn) {
+    const url = new URL(btn.dataset.share, location.href).href;
+    const title = btn.dataset.title || document.title;
+    try {
+      if (navigator.share) { await navigator.share({ title, url }); return; }
+      await navigator.clipboard.writeText(url);
+      say('Link copied');
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+      say('Couldn\'t copy the link. It\'s in the address bar.');
+      history.replaceState(null, '', btn.dataset.share);
+    }
   }
 
   // --- torchlight follows the pointer in the dungeon ---
