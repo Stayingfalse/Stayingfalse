@@ -55,6 +55,8 @@ The site is designed as a TV channel guide. The hero is a TV that tunes in from 
 | `speedway` | `socials[].theme` | Pit wall: start lights, then a timing tower |
 | `colony` | `socials[].theme` | The Farside pixel-art dusk: stepped, dithered sky, pixel stars, the channel art (`site/public/farside.png`), a HUD loading bar and pixel hills |
 
+Each channel is a full-screen reel. On screens at least 540px tall, scrolling snaps one reel at a time (`scroll-snap-type: y mandatory` plus `scroll-snap-stop: always`), like TikTok or Instagram Reels. Each reel has an action rail with Follow, Watch, Share and Next. On narrow screens, Watch opens the latest video as a popover sheet, which only loads when tapped; on wide screens the video sits inline. A progress bar driven by `animation-timeline: scroll()` runs along the top, and channel dots appear on wide screens. The repo credits are a sideways-swiping carousel with `::scroll-marker` dots in browsers that support them. Entrance animations replay each time you swipe back to a channel, and loops pause while a channel is off-screen. Keep each channel's content within one screen (around 1280×800 and 390×844); anything taller still scrolls, it just won't feel like a reel.
+
 A new Instagram account without a theme still gets a plain section. The browser code is in `site/public/app.js` and the styles in `site/public/styles.css`. All motion is turned off for people who prefer reduced motion.
 
 Endpoints: `/` serves the site, `/profile.json` the content as JSON, and `/healthz` a health check.
